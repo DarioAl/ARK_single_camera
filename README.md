@@ -26,3 +26,14 @@ If you use or adapt ARK in order to generate experimental results, please cite t
 
 * ARK makes use of a redesigned overhead controller: [ARK_OHC](https://github.com/DiODeProject/ARK_OHC)
 * [Kilobot Wiki](http://diode.group.shef.ac.uk/kilobots/index.php/Kilobots)
+
+### UBUNTU 18 installation 
+CUDA can be installed from the official repo (online installation is best). 
+WARNING: Do not install CUDA 11 since it is not working with opencv 3
+
+Follow this guide to install opencv 3.4.5 (I wasn't able to run ARK using 4.2)
+Add the following before running cmake in opencv to avoid issues with deprecated modeulesNOTE-DBUILD_opencv_cudacodec=OFF
+https://gist.github.com/raulqf/a3caa97db3f8760af33266a1475d0e5e
+
+Do not worry if the test file is not working, ARK should compile properly anyway
+
