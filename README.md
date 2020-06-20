@@ -32,8 +32,37 @@ CUDA can be installed from the official repo (online installation is best).
 WARNING: Do not install CUDA 11 since it is not working with opencv 3
 
 Follow this guide to install opencv 3.4.5 (I wasn't able to run ARK using 4.2)
-Add the following before running cmake in opencv to avoid issues with deprecated modeulesNOTE-DBUILD_opencv_cudacodec=OFF
+Add the following before running cmake in opencv to avoid issues with deprecated modeules NOTE-DBUILD_opencv_cudacodec=OFF
 https://gist.github.com/raulqf/a3caa97db3f8760af33266a1475d0e5e
 
 Do not worry if the test file is not working, ARK should compile properly anyway
+
+As for Vander notes, follow these steps to have the mako camera working properly with opencv
+# We are using a AV Mako camera, then we have to include its support in the OpenCV installation. Go directly to the OpenCV setup this is not your case.
+# We use the AVT Gige SDK for the camera. The new VIMBA SDK replaced the AVT Gige, but the OpenCV version we are using does not support it yet.
+# We followed the steps from this link: https://github.com/sightmachine/SimpleCV/wiki/Allied-Vision-(AVT)-GigE-Camera-Installation-Guide-for-Ubuntu-Linux
+
+# Download the SDK "PvAPI SDK for Linux v1.28" from: https://www.alliedvision.com/en/support/software-downloads.html
+# Choose: "Legacy Software (SDKs, apps, adapters, and interfaces)"
+# Unzip it at /opt with writing permission and:
+
+cd AVT\ GigE\ SDK/inc-pc
+sudo cp * /usr/local/include/
+
+cd ../lib-pc/x64/4.4
+sudo cp * /usr/local/lib/
+cd ../../../bin-pc/x64
+sudo cp *.so /usr/local/lib/
+sudo cp SampleViewer CLIpConfig /usr/bin
+
+
+# Open the /etc/ld.so.conf file:
+sudo nano /etc/ld.so.conf
+# Add the following line in the opened file:
+/usr/local/lib
+
+
+sudo ldconfig
+sudo apt-get install libjpeg62
+
 
