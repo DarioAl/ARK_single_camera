@@ -27,15 +27,15 @@ If you use or adapt ARK in order to generate experimental results, please cite t
 * ARK makes use of a redesigned overhead controller: [ARK_OHC](https://github.com/DiODeProject/ARK_OHC)
 * [Kilobot Wiki](http://diode.group.shef.ac.uk/kilobots/index.php/Kilobots)
 
-### UBUNTU 18 installation 
-CUDA can be installed from the official repo (online installation is best). 
+### UBUNTU 18 installation random notes
+CUDA can be installed from the official repo (online installation is best) just be carefull to call the correct version of cuda-* instead of simply cuda. 
 WARNING: Do not install CUDA 11 since it is not working with opencv 3
 
-Follow this guide to install opencv 3.4.5 (I wasn't able to run ARK using 4.2)
-Add the following before running cmake in opencv to avoid issues with deprecated modeules NOTE-DBUILD_opencv_cudacodec=OFF
-https://gist.github.com/raulqf/a3caa97db3f8760af33266a1475d0e5e
-
-Do not worry if the test file is not working, ARK should compile properly anyway
+Follow Vanders guide https://github.com/vanderfreitas/KilobotArenato install OpenCV3.4.1 (I had issues with 3.4.5 and PvAPI) or follow this guide and be sure to add:
+-D BUILD_opencv_cudacodec=OFF 
+-D WITH_PVAPI=ON
+-D PVAPI_LIBRARY="/usr/local/lib/libPvAPI.a"
+when running cmake
 
 #### As for Vander notes, follow these steps to have the mako camera working properly with opencv:
 We are using a AV Mako camera, then we have to include its support in the OpenCV installation. Go directly to the OpenCV setup this is not your case.
@@ -63,31 +63,3 @@ Add the following line in the opened file:
 
 sudo ldconfig
 sudo apt-get install libjpeg62
-
-To compile Opencv with PvAPI support 
-cmake 
--D CMAKE_BUILD_TYPE=RELEASE             
--D CMAKE_INSTALL_PREFIX=$cwd/installation/OpenCV-"$cvVersion"             
--D INSTALL_C_EXAMPLES=ON             
--D INSTALL_PYTHON_EXAMPLES=ON             
--D WITH_TBB=ON             
--D WITH_V4L=ON            
--D OPENCV_PYTHON3_INSTALL_PATH=$cwd/OpenCV-$cvVersion-py3/lib/python3.5/site-packages       
--D WITH_QT=ON       
--D WITH_OPENGL=ON        
--D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib-3.4.5/modules      
--D BUILD_EXAMPLES=ON -D CUDA_CUDA_LIBRARY=/usr/local/cuda/lib64/stubs/libcuda.so -D CUDA_ARCH_BIN=7.5 -D CUDA_ARCH_PTX="" 
--D WITH_CUDA=ON 
--D WITH_TBB=ON 
--D WITH_V4L=ON 
--D INSTALL_C_EXAMPLES=ON
--D BUILD_EXAMPLES=ON 
--D WITH_QT=ON 
--D WITH_OPENGL=ON 
--D ENABLE_FAST_MATH=1 
--D CUDA_FAST_MATH=1 
--D WITH_CUBLAS=1
--D WITH_NVCUVID=1 
--D BUILD_opencv_cudacodec=OFF WITH_PVAPI=ON
--D PVAPI_LIBRARY="/usr/local/lib/libPvAPI.a" ..
-
