@@ -63,3 +63,8 @@ Add the following line in the opened file:
 
 sudo ldconfig
 sudo apt-get install libjpeg62
+
+### PvAPI camera calibration
+in order to calibrate the camera you have to use the Sampleviewer software provided with the code above. 
+In Ubuntu 18 this will not work unless you install libtiff4, follow this steps to install it
+https://tutorialforlinux.com/2018/10/10/how-to-install-libtiff4-libtiff4-dev-for-ubuntu-18-04-bionicl-gnulinux-easy-guide/3/
