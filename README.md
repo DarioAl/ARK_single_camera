@@ -32,9 +32,11 @@ CUDA can be installed from the official repo (online installation is best) just 
 WARNING: Do not install CUDA 11 since it is not working with opencv 3
 
 Follow Vanders guide https://github.com/vanderfreitas/KilobotArena to install OpenCV3.4.1 (I had issues with 3.4.5 and PvAPI) or follow this guide and be sure to add:
+``
 -D BUILD_opencv_cudacodec=OFF 
 -D WITH_PVAPI=ON
 -D PVAPI_LIBRARY="/usr/local/lib/libPvAPI.a"
+``
 when running cmake
 
 #### As for Vander notes, follow these steps to have the mako camera working properly with opencv:
@@ -48,30 +50,34 @@ Unzip it at /opt with writing permission and:
 
 cd AVT\ GigE\ SDK/inc-pc
 sudo cp * /usr/local/include/
-
+``
 cd ../lib-pc/x64/4.4
 sudo cp * /usr/local/lib/
 cd ../../../bin-pc/x64
 sudo cp *.so /usr/local/lib/
 sudo cp SampleViewer CLIpConfig /usr/bin
-
+``
 Open the /etc/ld.so.conf file:
+``
 sudo nano /etc/ld.so.conf
+``
 Add the following line in the opened file:
+``
 /usr/local/lib
-
+``
 
 sudo ldconfig
 sudo apt-get install libjpeg62
 
 ### PvAPI camera calibration
 in order to calibrate the camera you have to use the Sampleviewer software provided with the code above. 
-In Ubuntu 18 this will not work unless you install libtiff4, follow this steps to install it
-https://tutorialforlinux.com/2018/10/10/how-to-install-libtiff4-libtiff4-dev-for-ubuntu-18-04-bionicl-gnulinux-easy-guide/3/
+In Ubuntu 18 this will not work unless you install libtiff4, follow [this](https://tutorialforlinux.com/2018/10/10/how-to-install-libtiff4-libtiff4-dev-for-ubuntu-18-04-bionicl-gnulinux-easy-guide/3/) steps to install it
+
 
 ### OHC not working
 If you use the kilogui the OHC will not work with the Smart Arena. Reboot the computer.
 If the OHC is not working at all, then add the current user to dial out group and reboot the computer:
-
+``sh
 sudo usermod -a -G dialout <your-user>
 sudo reboot now
+``
