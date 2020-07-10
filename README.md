@@ -31,7 +31,7 @@ If you use or adapt ARK in order to generate experimental results, please cite t
 CUDA can be installed from the official repo (online installation is best) just be carefull to call the correct version of cuda-* instead of simply cuda. 
 WARNING: Do not install CUDA 11 since it is not working with opencv 3
 
-Follow Vanders guide https://github.com/vanderfreitas/KilobotArenato install OpenCV3.4.1 (I had issues with 3.4.5 and PvAPI) or follow this guide and be sure to add:
+Follow Vanders guide https://github.com/vanderfreitas/KilobotArena to install OpenCV3.4.1 (I had issues with 3.4.5 and PvAPI) or follow this guide and be sure to add:
 -D BUILD_opencv_cudacodec=OFF 
 -D WITH_PVAPI=ON
 -D PVAPI_LIBRARY="/usr/local/lib/libPvAPI.a"
@@ -68,3 +68,10 @@ sudo apt-get install libjpeg62
 in order to calibrate the camera you have to use the Sampleviewer software provided with the code above. 
 In Ubuntu 18 this will not work unless you install libtiff4, follow this steps to install it
 https://tutorialforlinux.com/2018/10/10/how-to-install-libtiff4-libtiff4-dev-for-ubuntu-18-04-bionicl-gnulinux-easy-guide/3/
+
+### OHC not working
+If you use the kilogui the OHC will not work with the Smart Arena. Reboot the computer.
+If the OHC is not working at all, then add the current user to dial out group and reboot the computer:
+
+sudo usermod -a -G dialout <your-user>
+sudo reboot now
